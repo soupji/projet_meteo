@@ -27,7 +27,7 @@ Au-delà de manipuler des libraires de datavisualisation, le but du projet étai
 |       |- base_mongodb.js: fichier générique pour la création de la base + collection mongodb
 |       |- dockerfile: fichier docker, image mongodb
 |   |- templates
-|       |- data.html: page d'acceuil pour l'API
+|       |- data.html: homepage flask
 |   |- docker-compose.yml: docker compose pour la gestion des conteneurs
 |   |- readme.md: readme pour le projet
 ```
@@ -68,7 +68,7 @@ Il est tout à fait possible de relancer le Jupyter, avec des données plus réc
             - **y:** Le code tourne jusqu'à une interruption manuel (ctrl c)
             - **n:** Utiliser les routes flask
         ``` bash
-        /!\: essayer de sauvegarder les données dans la base mongodb sans passer par docker génerera une erreur, car les identifiants de connexion sont parametrés pour le docker compose.
+        /!\: essayer de sauvegarder les données dans la base mongodb sans passer par docker génèrera une erreur, car les identifiants de connexion sont parametrés pour le docker compose.
         ```
 
     - Utiliser docker:
