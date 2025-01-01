@@ -17,31 +17,42 @@ Au-delà de manipuler des libraires de datavisualisation, le but du projet étai
 
 ### Architecture projet
 ``` bash
-|- projet meteo
-|   |- python
-|       |- main.py: code python principal du projet
-|       |- projet_meteo.ipynb: jupyter notebook pour la datavisuliation
-|       |- requirements.txt: libraires nécessaires à installer (gérer automatiquement via docker)
-|       |- dockerfile: fichier docker, image python
-|   |- mongodb
-|       |- base_mongodb.js: fichier générique pour la création de la base + collection mongodb
-|       |- dockerfile: fichier docker, image mongodb
-|   |- templates
-|       |- data.html: page d'acceuil pour l'API
-|   |- docker-compose.yml: docker compose pour la gestion des conteneurs
-|   |- readme.md: readme pour le projet
+|- **projet meteo**
+|   |- **python**
+|       |- *main.py:* code python principal du projet
+|       |- *projet_meteo.ipynb:* jupyter notebook pour la datavisuliation
+|       |- *requirements.txt:* libraires nécessaires à installer (gérer automatiquement via docker)
+|       |- *dockerfile:* fichier docker, image python
+|   |- **mongodb**
+|       |- *base_mongodb.js:* fichier générique pour la création de la base + collection mongodb
+|       |- *dockerfile:* fichier docker, image mongodb
+|   |- **templates**
+|       |- *data.html:* page d'acceuil pour l'API
+|   |- *docker-compose.yml:* docker compose pour la gestion des conteneurs
+|   |- *readme.md:* readme pour le projet
 ```
 
 ![Schéma d'architecture du projet](https://github.com/soupji/projet_meteo/blob/master/schema_architecture.png?raw=true)
 
 ### Routes flask
+``` bash
 - localhost:5000/: home page générale
-- localhost:5000/weather/2968815: récupérer les JSON d'une ville donnée (id de la ville)
+- localhost:5000/weather/<city_id>: récupérer les JSON d'une ville donnée (id de la ville)
+- exemple: localhost:5000/weather/2968815
+```
 
 ## Guide d'utilisation
 
 ### Prérequis
-Avoir l'interpreteur python et docker desktop
+- Avoir l'interpreteur python et docker desktop.
+- Le port d'écoute pour la base mongodb utilisé tout au long du projet est le **27017**.
+
+### Note sur le Jupyter Notebook
+Les analyses de datavisualisation ont été générés avec Jupyter Notebook, sur ~30 000 lignes de données, sur la journée du 31 décembre.  
+Il est tout à fait possible de relancer le Jupyter, avec des données plus récentes. Attention à installer les librairies nécessaires au préalable, car il n'y a pas de pip install dans le notebook.
+``` bash
+/!\ Le Jupyter n'est lui pas pris en compte dans la dockerisation du projet, donc **la connexion à la base mongodb se fait en local**.
+```
 
 ### Run du projet
 - Télécharger l'archive du projet git
@@ -52,17 +63,18 @@ Avoir l'interpreteur python et docker desktop
         - cd 'projet meteo/python/'
         - python main.py
         ```
-        - Sauvegarder les données dans une base mongodb (y/n)?:
-            - y: Le code tourne jusqu'à une interruption manuel (ctrl c)
-            - n: Utiliser les routes flask
+        - Sauvegarder les données dans une base mongodb **(y/n)?:**
+            - **y:** Le code tourne jusqu'à une interruption manuel (ctrl c)
+            - **n:** Utiliser les routes flask
 
     - Utiliser docker:
         ``` bash
         - cd 'projet meteo'/
         - docker compose up -d (le docker compose intègre des properties pour permettre l'utilisation d'un input par le user dans la console)
         ```
-        - Deux conteneurs sont par la suite généré:
-            - projetmeteo:
-                - projet_meteo_python: interaction avec le code python
-                - projet_meteo_mongodb: base mongodb, utilisable en ligne de commande (dans le conteneur) via la commande mongosh
-        - /!\: pour sauvegarder les données dans la base mongodb, il faut entrer 'y' dans le conteneur python, puis basculer sur le conteneur mongodb pour voir l'insertion en temps réel
+        - Deux conteneurs sont par la suite généré au sein du conteneur **projetmeteo:**
+            - **projet_meteo_python:** interaction avec le code python
+            - **projet_meteo_mongodb:** base mongodb, utilisable en ligne de commande (dans le conteneur) via la commande mongosh
+``` bash
+/!\: pour sauvegarder les données dans la base mongodb, il faut entrer **'y'** dans le **conteneur python**, puis basculer sur le **conteneur mongodb** pour voir l'insertion en temps réel.
+```
