@@ -1,0 +1,20 @@
+# Define the base image
+FROM python:3.8-slim-buster
+
+# Create a working directory
+WORKDIR /projet_meteo
+
+# Copy requirements.txt
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the application code
+COPY . .
+
+# Expose the Flask application port
+EXPOSE 5000
+
+# Run the Flask development server
+CMD [ "python", "main.py"]
