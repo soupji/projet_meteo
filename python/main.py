@@ -30,7 +30,7 @@ def get_weather_data(city_id):
 
     return response.json()
 
-mongo_uri = os.getenv("MONGO_URI", "mongodb://172.17.0.2:27017")
+mongo_uri = os.getenv("MONGO_URI", "mongodb://projet_meteo_mongodb:27017")
 mongo_client = MongoClient(mongo_uri)
 #client = MongoClient("mongodb://localhost:27017/")
 db = mongo_client["meteo"]

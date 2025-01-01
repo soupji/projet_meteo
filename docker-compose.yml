@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image:  mongodb/mongodb-community-server:latest
+    container_name: projet_meteo_mongodb
+    hostname: projet_meteo_mongodb
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./mongodb/mongod-scripts:/docker-entrypoint-initdb.d/
+      - mongodb_data:/data/db
+    networks:
+      - main
+    restart: always
+
+  main:
+    build: ./python
+    container_name: projet_meteo_python
+    depends_on:
+      - mongodb
+    volumes:
+      - ./python:/projet_meteo
+    command: python main.py
+    networks:
+      - main
+    stdin_open: true
+    tty: true
+ 
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  main:
+    driver: bridge
