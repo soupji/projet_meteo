@@ -30,6 +30,7 @@ Au-delà de manipuler des libraires de datavisualisation, le but du projet étai
 |       |- data.html: homepage flask
 |   |- docker-compose.yml: docker compose pour la gestion des conteneurs
 |   |- readme.md: readme pour le projet
+|   |- screenshot_run_projet_local.pdf: différents screens pour montrer les résultats du projet en local
 ```
 
 ![Schéma d'architecture du projet](https://github.com/soupji/projet_meteo/blob/master/schema_architecture.png?raw=true)
