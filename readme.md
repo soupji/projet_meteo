@@ -15,6 +15,23 @@ Au-delà de manipuler des libraires de datavisualisation, le but du projet étai
 - Sauvegarder les données relatives aux villes françaises dans une base mongodb
 - Le projet est fonctionnel via docker et la conteneurisation
 
+### Architecture projet
+``` bash
+|- projet meteo
+|   |- python
+|       |- main.py: code python principal du projet
+|       |- projet_meteo.ipynb: jupyter notebook pour la datavisuliation
+|       |- requirements.txt: libraires nécessaires à installer (gérer automatiquement via docker)
+|       |- dockerfile: fichier docker, image python
+|   |- mongodb
+|       |- base_mongodb.js: fichier générique pour la création de la base + collection mongodb
+|       |- dockerfile: fichier docker, image mongodb
+|   |- templates
+|       |- data.html: page d'acceuil pour l'API
+|   |- docker-compose.yml: docker compose pour la gestion des conteneurs
+|   |- readme.md: readme pour le projet
+```
+
 ### Routes flask
 - localhost:5000/: home page générale
 - localhost:5000/weather/2968815: récupérer les JSON d'une ville donnée (id de la ville)
