@@ -32,6 +32,8 @@ Au-delà de manipuler des libraires de datavisualisation, le but du projet étai
 |   |- readme.md: readme pour le projet
 ```
 
+![Schéma d'architecture du projet](https://github.com/soupji/projet_meteo/blob/master/schema_architecture.png?raw=true)
+
 ### Routes flask
 - localhost:5000/: home page générale
 - localhost:5000/weather/2968815: récupérer les JSON d'une ville donnée (id de la ville)
